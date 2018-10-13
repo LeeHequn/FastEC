@@ -7,7 +7,7 @@ import com.tepth.latte.app.Latte;
 import com.tepth.latte.ec.icon.FontEcModule;
 
 /**
- * Description:
+ * Description:测试Application
  *
  * @author Hequn.Lee
  * @date 2018/10/13
