@@ -6,7 +6,7 @@ package com.tepth.latte.app;
  * @author Hequn.Lee
  * @date 2018/10/13
  */
-public enum  ConfigType {
+public enum ConfigKeys {
     /**
      * 后台主地址
      */
@@ -19,6 +19,10 @@ public enum  ConfigType {
      * 配置文件是否加载
      */
     CONFIG_READY,
+    /**
+     * 菊花等待时间
+     */
+    LOADER_DELAYED,
     /**
      * 图标
      */

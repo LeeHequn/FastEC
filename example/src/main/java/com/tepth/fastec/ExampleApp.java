@@ -4,7 +4,9 @@ import android.app.Application;
 
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.tepth.latte.app.Latte;
+import com.tepth.latte.ec.database.DatabaseManager;
 import com.tepth.latte.ec.icon.FontEcModule;
+import com.tepth.latte.net.interceptors.CookieInterceptors;
 
 /**
  * Description:测试Application
@@ -18,9 +20,12 @@ public class ExampleApp extends Application {
     public void onCreate() {
         super.onCreate();
         Latte.init(this)
-                .withApiHost("127.0.0.1")
+                .withApiHost("http://192.168.1.23:80/RestServer/api/")
+                .withLoaderDelayed(1000)
+                .withInterceptor(new CookieInterceptors())
                 .withIcon(new FontEcModule())
                 .withIcon(new FontAwesomeModule())
                 .configure();
+        DatabaseManager.getInstance().init(this);
     }
 }

@@ -1,10 +1,17 @@
 package com.tepth.latte.app;
 
+import android.app.Activity;
+import android.os.Handler;
+
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import okhttp3.Interceptor;
 
 /**
  * Description:配置类
@@ -19,12 +26,20 @@ public class Configurator {
      */
     private static final HashMap<Object, Object> LATTE_CONFIGS = new HashMap<>();
     /**
+     * 全局的Handler
+     */
+    private static final Handler HANDLER = new Handler();
+    /**
      * 全局的图标库
      */
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
+    /**
+     * 拦截器
+     */
+    private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
     private Configurator() {
-        LATTE_CONFIGS.put(ConfigType.CONFIG_READY, false);
+        LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, false);
     }
 
     public static Configurator getInstance() {
@@ -41,9 +56,9 @@ public class Configurator {
 
     public final void configure() {
         initIcons();
-//        Logger.addLogAdapter(new AndroidLogAdapter());
-        LATTE_CONFIGS.put(ConfigType.CONFIG_READY, true);
-//        LATTE_CONFIGS.put(ConfigType.HANDLER, HANDLER);
+        Logger.addLogAdapter(new AndroidLogAdapter());
+        LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, true);
+        LATTE_CONFIGS.put(ConfigKeys.HANDLER, HANDLER);
     }
 
     /**
@@ -59,7 +74,7 @@ public class Configurator {
     }
 
     public final Configurator withApiHost(String host) {
-        LATTE_CONFIGS.put(ConfigType.API_HOST, host);
+        LATTE_CONFIGS.put(ConfigKeys.API_HOST, host);
         return this;
     }
 
@@ -68,8 +83,31 @@ public class Configurator {
         return this;
     }
 
+    public final Configurator withInterceptor(Interceptor interceptor) {
+        INTERCEPTORS.add(interceptor);
+        LATTE_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);
+        return this;
+    }
+
+    public final Configurator withInterceptors(ArrayList<Interceptor> interceptors) {
+        INTERCEPTORS.addAll(interceptors);
+        LATTE_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);
+        return this;
+    }
+
+    public final Configurator withActivity(Activity activity) {
+        LATTE_CONFIGS.put(ConfigKeys.ACTIVITY, activity);
+        return this;
+    }
+
+
+    public final Configurator withLoaderDelayed(long delayed) {
+        LATTE_CONFIGS.put(ConfigKeys.LOADER_DELAYED, delayed);
+        return this;
+    }
+
     private void checkConfiguration() {
-        final boolean isReady = (boolean) LATTE_CONFIGS.get(ConfigType.CONFIG_READY);
+        final boolean isReady = (boolean) LATTE_CONFIGS.get(ConfigKeys.CONFIG_READY);
         if (!isReady) {
             throw new RuntimeException("Configuration is not ready,call configure");
         }

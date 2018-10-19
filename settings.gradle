@@ -1,1 +1,1 @@
-include ':example', ':latte_annotations', ':latte_compiler', ':latte_ec', ':latte_core'
+include ':example', ':latte_annotations', ':latte_compiler', ':latte_ec', ':latte_core', ':latte_ui'

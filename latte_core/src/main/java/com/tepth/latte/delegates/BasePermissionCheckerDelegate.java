@@ -6,5 +6,5 @@ package com.tepth.latte.delegates;
  * @author Hequn.Lee
  * @date 2018/10/14
  */
-public abstract class PermissionCheckerDelegate extends BaseDelegate {
+public abstract class BasePermissionCheckerDelegate extends BaseDelegate {
 }

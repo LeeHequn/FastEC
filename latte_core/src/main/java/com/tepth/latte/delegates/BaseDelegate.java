@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.tepth.latte.activities.BaseProxyActivity;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
@@ -22,8 +24,19 @@ public abstract class BaseDelegate extends SwipeBackFragment {
     @SuppressWarnings("SpellCheckingInspection")
     private Unbinder mUnbinder = null;
 
+    /**
+     * 设置布局文件
+     *
+     * @return 返回布局文件的对象
+     */
     public abstract Object setLayout();
 
+    /**
+     * 绑定View
+     *
+     * @param savedInstanceState 保存的Bundle
+     * @param rootView           绑定的View
+     */
     public abstract void onBindView(@Nullable Bundle savedInstanceState, View rootView);
 
     @Nullable
@@ -41,6 +54,10 @@ public abstract class BaseDelegate extends SwipeBackFragment {
             onBindView(savedInstanceState, rootView);
         }
         return rootView;
+    }
+
+    public final BaseProxyActivity getProxyActivity() {
+        return (BaseProxyActivity) _mActivity;
     }
 
     @Override

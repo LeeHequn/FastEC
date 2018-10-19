@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.widget.FrameLayout;
 
 import com.tepth.latte.core.R;
-import com.tepth.latte.delegates.LatteDelegate;
+import com.tepth.latte.delegates.BaseLatteDelegate;
 
 import me.yokeyword.fragmentation.SupportActivity;
 
@@ -15,9 +15,14 @@ import me.yokeyword.fragmentation.SupportActivity;
  * @author Hequn.Lee
  * @date 2018/10/13
  */
-public abstract class ProxyActivity extends SupportActivity {
+public abstract class BaseProxyActivity extends SupportActivity {
 
-    public abstract LatteDelegate setRootDelegate();
+    /**
+     * 设置主页Delegate
+     *
+     * @return 返回主页Delegate
+     */
+    public abstract BaseLatteDelegate setRootDelegate();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
