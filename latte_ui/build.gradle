@@ -23,7 +23,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
-    api ('com.android.support:recyclerview-v7:28.0.0')
+    api('com.android.support:recyclerview-v7:28.0.0')
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     api project(':latte_core')
@@ -32,12 +32,12 @@ dependencies {
     //Banner
     api 'com.bigkoo:ConvenientBanner:2.1.4'
     api 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
-//    //Glide图片加载库
-//    api ('com.github.bumptech.glide:glide:4.8.0'){
-//        exclude group: 'com.android.support'
-//    }
-//    api ("com.github.bumptech.glide:okhttp3-integration:4.8.0"){
-//        exclude group: 'com.android.support'
-//    }
-//    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    //RecyclerView解析器
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.42'
+    //RecyclerView分割线
+    api 'com.yqritc:recyclerview-flexibledivider:1.4.0'
+    //Glide图片加载库
+    api 'com.github.bumptech.glide:glide:4.8.0'
+    api "com.github.bumptech.glide:okhttp3-integration:4.8.0"
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 }
