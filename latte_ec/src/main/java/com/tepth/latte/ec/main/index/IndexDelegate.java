@@ -62,6 +62,7 @@ public class IndexDelegate extends BaseBottomItemDelegate {
                 .size(3)
                 .build());
         final EcBottomDelegate ecBottomDelegate = getParentDelegate();
+        
 //        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
 //        mRecyclerView.addOnScrollListener(new BaseHidingScrollListener() {
 //
