@@ -16,11 +16,20 @@ import com.tepth.latte.net.interceptors.CookieInterceptors;
  */
 public class ExampleApp extends Application {
 
+    /**
+     * 家里的XAMPP服务器地址
+     */
+    private static final String HOME_IP_ADDRESS = "http://192.168.0.107:80/RestServer/api/";
+    /**
+     * 公司的XAMPP服务器地址
+     */
+    private static final String WORK_IP_ADDRESS = "http://192.168.1.23:80/RestServer/api/";
+
     @Override
     public void onCreate() {
         super.onCreate();
         Latte.init(this)
-                .withApiHost("http://192.168.1.23:80/RestServer/api/")
+                .withApiHost(HOME_IP_ADDRESS)
                 .withLoaderDelayed(1000)
                 .withInterceptor(new CookieInterceptors())
                 .withIcon(new FontEcModule())
