@@ -29,7 +29,7 @@ public class ExampleApp extends Application {
     public void onCreate() {
         super.onCreate();
         Latte.init(this)
-                .withApiHost(HOME_IP_ADDRESS)
+                .withApiHost(WORK_IP_ADDRESS)
                 .withLoaderDelayed(1000)
                 .withInterceptor(new CookieInterceptors())
                 .withIcon(new FontEcModule())

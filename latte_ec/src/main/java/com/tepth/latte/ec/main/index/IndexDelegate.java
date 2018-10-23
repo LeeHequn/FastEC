@@ -13,7 +13,8 @@ import com.joanzapata.iconify.widget.IconTextView;
 import com.tepth.latte.delegates.bottom.BaseBottomItemDelegate;
 import com.tepth.latte.ec.R;
 import com.tepth.latte.ec.R2;
-import com.tepth.latte.ec.main.EcBottomDelegate;
+import com.tepth.latte.ui.refresh.RefreshHandler;
+import com.tepth.latte.utils.resources.ResourcesUtil;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import butterknife.BindView;
@@ -41,7 +42,27 @@ public class IndexDelegate extends BaseBottomItemDelegate {
     @BindView(R2.id.et_search_view)
     AppCompatEditText mSearchView = null;
 
-//    private RefreshHandler mRefreshHandler = null;
+    private RefreshHandler mRefreshHandler = null;
+
+    /**
+     * 初始化下拉刷新布局
+     */
+    private void initRefreshLayout() {
+        mRefreshLayout.setColorSchemeColors(
+                ResourcesUtil.getColorFromResources(getContext(), android.R.color.holo_blue_bright),
+                ResourcesUtil.getColorFromResources(getContext(), android.R.color.holo_orange_light),
+                ResourcesUtil.getColorFromResources(getContext(), android.R.color.holo_red_light)
+        );
+        mRefreshLayout.setProgressViewOffset(true, 120, 300);
+        mRefreshHandler.firstPage("index.php");
+    }
+
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+        initRecyclerView();
+        initRefreshLayout();
+    }
 
     @Override
     public Object setLayout() {
@@ -50,7 +71,7 @@ public class IndexDelegate extends BaseBottomItemDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-
+        mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecyclerView, new IndexDataConvert());
     }
 
     private void initRecyclerView() {
@@ -61,8 +82,7 @@ public class IndexDelegate extends BaseBottomItemDelegate {
                 .color(R.color.app_main)
                 .size(3)
                 .build());
-        final EcBottomDelegate ecBottomDelegate = getParentDelegate();
-        
+//        final EcBottomDelegate ecBottomDelegate = getParentDelegate();
 //        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
 //        mRecyclerView.addOnScrollListener(new BaseHidingScrollListener() {
 //

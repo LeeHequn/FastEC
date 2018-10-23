@@ -10,7 +10,7 @@ import com.tepth.latte.delegates.BaseLatteDelegate;
 import com.tepth.latte.ec.launcher.LauncherDelegate;
 import com.tepth.latte.ec.main.EcBottomDelegate;
 import com.tepth.latte.ec.sign.ISignListener;
-import com.tepth.latte.ec.sign.SignUpDelegate;
+import com.tepth.latte.ec.sign.SignInDelegate;
 import com.tepth.latte.ui.launcher.ILauncherListener;
 import com.tepth.latte.ui.launcher.OnLauncherFinishTag;
 
@@ -58,7 +58,7 @@ public class ExampleActivity extends BaseProxyActivity implements ISignListener,
                 break;
             case NOT_SIGNED:
                 Toast.makeText(this, "启动结束了，用户没登陆", Toast.LENGTH_SHORT).show();
-                getSupportDelegate().startWithPop(new SignUpDelegate());
+                getSupportDelegate().startWithPop(new SignInDelegate());
                 break;
             default:
                 break;
