@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
@@ -46,6 +47,22 @@ public class TranslucentBehavior extends CoordinatorLayout.Behavior<Toolbar> {
     @Override
     public boolean layoutDependsOn(@NonNull CoordinatorLayout parent, @NonNull Toolbar child, @NonNull View dependency) {
         return dependency.getId() == R.id.rv_index;
+    }
+
+    /**
+     * 此方法极其重要，决定是否要处理滑动事件
+     *
+     * @param coordinatorLayout CoordinatorLayout父布局
+     * @param child             Toolbar子布局
+     * @param directTargetChild 滑动的布局
+     * @param target            目标布局
+     * @param axes              横向纵向判断
+     * @param type              是否控制处理
+     * @return 返回是否处理滑动事件
+     */
+    @Override
+    public boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull Toolbar child, @NonNull View directTargetChild, @NonNull View target, int axes, int type) {
+        return (axes & ViewCompat.SCROLL_AXIS_VERTICAL) != 0;
     }
 
     @Override
