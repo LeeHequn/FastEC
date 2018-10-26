@@ -29,4 +29,5 @@ dependencies {
     api project(':latte_ui')
     //ButterKnife
     annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
+    api 'de.hdodenhof:circleimageview:2.2.0'
 }
