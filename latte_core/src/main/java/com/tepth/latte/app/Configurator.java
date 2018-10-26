@@ -3,6 +3,7 @@ package com.tepth.latte.app;
 import android.app.Activity;
 import android.os.Handler;
 
+import com.blankj.utilcode.util.Utils;
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 import com.orhanobut.logger.AndroidLogAdapter;
@@ -55,6 +56,7 @@ public class Configurator {
     }
 
     public final void configure() {
+        Utils.init(Latte.getApplicationContext());
         initIcons();
         Logger.addLogAdapter(new AndroidLogAdapter());
         LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, true);

@@ -9,7 +9,6 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -22,10 +21,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    testImplementation 'junit:junit:4.12'
     api('com.android.support:recyclerview-v7:28.0.0')
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     api project(':latte_core')
     //ButterKnife
     annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
@@ -46,4 +42,10 @@ dependencies {
     //Google AutoValue
     api "com.google.auto.value:auto-value-annotations:1.6.2"
     annotationProcessor "com.google.auto.value:auto-value:1.6.2"
+    //图片剪裁
+    api 'com.github.yalantis:ucrop:2.2.2-native'
+    //权限处理
+    //noinspection GradleDependency
+    api "com.github.hotchemi:permissionsdispatcher:3.3.1"
+    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:3.3.1"
 }
