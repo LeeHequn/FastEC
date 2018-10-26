@@ -13,6 +13,7 @@ import com.tepth.latte.ec.main.personal.list.ListAdapter;
 import com.tepth.latte.ec.main.personal.list.ListBean;
 import com.tepth.latte.ec.main.personal.list.ListItemType;
 import com.tepth.latte.ec.main.personal.order.OrderListDelegate;
+import com.tepth.latte.ec.main.personal.profile.UserProfileDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +47,8 @@ public class PersonalDelegate extends BaseBottomItemDelegate {
     }
 
     @OnClick(R2.id.img_user_avatar)
-    void onClickAvater() {
-//        getParentDelegate().getSupportDelegate().start(new UserProfileDelegate());
+    void onClickAvatar() {
+        getParentDelegate().getSupportDelegate().start(new UserProfileDelegate());
     }
 
     private void startOrderListByType() {
