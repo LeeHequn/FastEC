@@ -68,4 +68,13 @@ dependencies {
     api 'com.orhanobut:logger:2.2.0'
     //util工具包
     api 'com.blankj:utilcode:1.21.2'
+    //图片剪裁
+    api 'com.github.yalantis:ucrop:2.2.2-native'
+    //权限处理
+    //noinspection GradleDependency
+    api "com.github.hotchemi:permissionsdispatcher:3.3.1"
+    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:3.3.1"
+    configurations {
+        all*.exclude group: 'com.android.support', module: 'support-v13'
+    }
 }

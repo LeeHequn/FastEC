@@ -42,10 +42,4 @@ dependencies {
     //Google AutoValue
     api "com.google.auto.value:auto-value-annotations:1.6.2"
     annotationProcessor "com.google.auto.value:auto-value:1.6.2"
-    //图片剪裁
-    api 'com.github.yalantis:ucrop:2.2.2-native'
-    //权限处理
-    //noinspection GradleDependency
-    api "com.github.hotchemi:permissionsdispatcher:3.3.1"
-    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:3.3.1"
 }

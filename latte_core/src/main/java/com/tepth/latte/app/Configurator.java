@@ -56,11 +56,11 @@ public class Configurator {
     }
 
     public final void configure() {
-        Utils.init(Latte.getApplicationContext());
         initIcons();
         Logger.addLogAdapter(new AndroidLogAdapter());
         LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, true);
         LATTE_CONFIGS.put(ConfigKeys.HANDLER, HANDLER);
+        Utils.init(Latte.getApplicationContext());
     }
 
     /**

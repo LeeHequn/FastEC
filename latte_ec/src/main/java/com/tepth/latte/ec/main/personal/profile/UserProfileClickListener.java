@@ -1,16 +1,23 @@
 package com.tepth.latte.ec.main.personal.profile;
 
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.tepth.latte.delegates.BaseLatteDelegate;
 import com.tepth.latte.ec.R;
 import com.tepth.latte.ec.main.personal.list.ListBean;
 import com.tepth.latte.ui.date.DateDialogUtil;
+import com.tepth.latte.utils.callback.CallbackKeys;
+import com.tepth.latte.utils.callback.CallbackManager;
+import com.tepth.latte.utils.callback.IGlobalCallback;
+import com.tepth.latte.utils.log.LatteLogger;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -39,7 +46,18 @@ public class UserProfileClickListener extends SimpleClickListener {
         final int id = bean.getId();
         switch (id) {
             case 1:
-                //打开照相机或上传图片
+                CallbackManager.getIntance().addCallback(CallbackKeys.ON_CROP, new IGlobalCallback<Uri>() {
+                    @Override
+                    public void executeCallback(Uri args) {
+                        LatteLogger.d("ON_CROP", args);
+                        final ImageView avatar = view.findViewById(R.id.img_arrow_avatar);
+                        Glide.with(DELEGATE)
+                                .load(args)
+                                .into(avatar);
+                    }
+                });
+                //打开照相机或选择图片
+                DELEGATE.startCameraWithCode();
                 break;
             case 2:
                 final BaseLatteDelegate nameDelegate = bean.getDelegate();

@@ -7,7 +7,7 @@ package com.tepth.latte.delegates;
  * @date 2018/10/14
  */
 @SuppressWarnings("ALL")
-public abstract class BaseLatteDelegate extends BaseDelegate {
+public abstract class BaseLatteDelegate extends BasePermissionCheckerDelegate {
     /**
      * 获取Fragment的上一级Fragment
      *

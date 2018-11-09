@@ -14,8 +14,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.blankj.utilcode.util.FileUtils;
+import com.tepth.latte.core.R;
 import com.tepth.latte.delegates.BasePermissionCheckerDelegate;
-import com.tepth.latte.ui.R;
 import com.tepth.latte.utils.file.FileUtil;
 
 import java.io.File;
@@ -31,12 +31,12 @@ public class CameraHandler implements View.OnClickListener {
     private final AlertDialog DIALOG;
     private final BasePermissionCheckerDelegate DELEGATE;
 
-    public CameraHandler(AlertDialog dialog, BasePermissionCheckerDelegate delegate) {
-        DIALOG = dialog;
+    CameraHandler(BasePermissionCheckerDelegate delegate) {
         DELEGATE = delegate;
+        DIALOG = new AlertDialog.Builder(delegate.getContext()).create();
     }
 
-    public void beginPayDialog() {
+    void beginPayDialog() {
         DIALOG.show();
         final Window window = DIALOG.getWindow();
         if (window != null) {
@@ -74,18 +74,34 @@ public class CameraHandler implements View.OnClickListener {
             //需要将uri路径转为实际路径
             final File realFile = FileUtils.getFileByPath(FileUtil.getRealFilePath(DELEGATE.getContext(), uri));
             final Uri realUri = Uri.fromFile(realFile);
-
+            CameraImageBean.getInstance().setPath(realUri);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        } else {
+            final Uri fileUri = Uri.fromFile(tempFile);
+            CameraImageBean.getInstance().setPath(fileUri);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
         }
+        DELEGATE.startActivityForResult(intent, RequestCodes.TAKE_PHOTO);
+    }
+
+    private void pickPhoto() {
+        final Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        DELEGATE.startActivityForResult(
+                Intent.createChooser(intent, "选择获取图片的方式"),
+                RequestCodes.PICK_PHOTO);
     }
 
     @Override
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.btn_dialog_camera) {
-
+            takePhoto();
             DIALOG.cancel();
         } else if (id == R.id.btn_dialog_native) {
-
+            pickPhoto();
             DIALOG.cancel();
         } else if (id == R.id.btn_dialog_cancel) {
             DIALOG.cancel();
